@@ -19,6 +19,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import { login } from "@/actions/login";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -42,25 +43,25 @@ const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
-    console.log(values);
-    
 
-    // startTransition(() => { 
-    //   login(values, callbackUrl)
-    //     .then((data) => {
-    //       if (data?.error) { 
-    //         form.reset();
-    //         setError(data.error);
-    //       }
-    //       if (data?.success) { 
-    //         form.reset();
-    //         setSuccess(data.success);
-    //       }
-    //       if (data?.twoFactor) {
-    //         setShowTwoFactor(true);
-    //       }
-    //   })
-    // })
+  
+    startTransition(() => {
+      login(values)
+        .then((data) => {
+          if (data?.error) {
+            form.reset()
+            setError(data.error);
+          }
+          if (data?.success) {
+            form.reset()
+            setSuccess(data.success);
+          }
+        
+        })
+        .catch(() => setError("Something wnt wrong"))
+    });
+
+
    }
   return (
     <div className=" flex items-center justify-center h-full w-full bg-gradient-to-tr from-sky-400 to-blue-800">
