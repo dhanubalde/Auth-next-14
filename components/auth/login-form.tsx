@@ -6,7 +6,14 @@ import { useForm} from "react-hook-form"
 import { LoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CardWrapper from "./card-wrapper";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -139,8 +146,8 @@ const LoginForm = () => {
                 </>
               )}
             </div>
-          <FormError message={error || urlError} />
-          <FormSuccess message={success} />
+            <FormError message={error || urlError} />
+            <FormSuccess message={success} />
           <Button
             disabled={isPending}
             type="submit"
