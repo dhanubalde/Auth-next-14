@@ -64,7 +64,7 @@ const LoginForm = () => {
 
    }
   return (
-    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-tr from-sky-400 to-blue-800">
+    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-tr from-sky-400 via-rose-400 to-blue-800">
     <CardWrapper
       headerLabel="Welcome Back"
       backButtonLabel="Don't have an account"

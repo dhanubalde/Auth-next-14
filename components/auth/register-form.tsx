@@ -2,10 +2,17 @@
 import * as z from "zod"
 import { RegisterSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { startTransition, useState, useTransition } from "react"
+import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form";
 import CardWrapper from "./card-wrapper";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
@@ -17,7 +24,7 @@ const RegisterForm = () => {
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  const [isPending, setTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -29,24 +36,25 @@ const RegisterForm = () => {
     }
   })
 
+
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     setError("");
     setSuccess("");
-    startTransition(() => { 
+    
+    startTransition(() => {
       register(values)
-        .then((data) => { 
-          if (data?.error) { 
-            setError(data.error);
-          }   
-          if (data?.success) { 
+        .then((data) => {
+          setError(data.error);
+          if (data.success) {
+            form.reset()
             setSuccess(data.success);
           }
-        })
-    })
+        });
+    });
   }
 
   return (
-    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-tr from-sky-400 to-blue-800">
+    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-tr from-sky-400 via-rose-400 to-blue-800">
     <CardWrapper
       headerLabel="Create an Account"
       backButtonLabel="Already have an account?"
@@ -70,6 +78,7 @@ const RegisterForm = () => {
                       {...field}
                       disabled={ isPending}
                       placeholder="Jhon doe"
+                      type="name"
                     />
                   </FormControl>
                   <FormMessage/>
