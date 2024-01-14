@@ -46,10 +46,10 @@ const RegisterForm = () => {
         .then((data) => {
           setError(data.error);
           if (data.success) {
-            form.reset()
             setSuccess(data.success);
           }
-        });
+        })
+        .catch(() => setError("Something wnt wrong"))
     });
   }
 
@@ -78,7 +78,7 @@ const RegisterForm = () => {
                       {...field}
                       disabled={ isPending}
                       placeholder="Jhon doe"
-                      type="name"
+                      
                     />
                   </FormControl>
                   <FormMessage/>
