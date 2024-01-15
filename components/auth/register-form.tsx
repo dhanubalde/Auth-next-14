@@ -45,11 +45,8 @@ const RegisterForm = () => {
       register(values)
         .then((data) => {
           setError(data.error);
-          if (data.success) {
-            setSuccess(data.success);
-          }
-        })
-        .catch(() => setError("Something wnt wrong"))
+          setSuccess(data.success);
+        }) 
     });
   }
 

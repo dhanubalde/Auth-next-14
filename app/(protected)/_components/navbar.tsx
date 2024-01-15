@@ -1,8 +1,21 @@
 "use client"
 
+const links = [
+  {
+    label: "Settings",
+    href: "/settings"
+  },
+  {
+    label: "Server",
+    href: "/settings"
+  }
+]
+
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <div className="">
+      Navbar
+    </div>
   )
 }
 
