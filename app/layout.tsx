@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { SessionProvider } from 'next-auth/react'
 import { Inter } from 'next/font/google'
 
 
@@ -18,13 +19,13 @@ export default function RootLayout({
     
 
   return (
-  
+  <SessionProvider>
     <html lang="en">
       <body className={inter.className}>
         
         {children}
       </body>
       </html>
-
+  </SessionProvider>
   )
 }
