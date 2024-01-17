@@ -23,23 +23,22 @@ export const UserButton = () => {
   return (
     <>
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-x-4 capitalize">
+      <DropdownMenuTrigger className=" relative flex items-center gap-x-4 capitalize">
           <p className=" relative font-medium">
             @{user?.name}
             
         </p>
         
-        <Avatar className=" relative">
+        <Avatar>
           <AvatarImage src={user?.image || ""} />
           <AvatarFallback className=" bg-slate-950">
               <FaUser className="text-white" />
-              <span className="h-[10px] w-[10px] bg-green-600 absolute rounded-full mt-6 ml-5 overflow-auto "></span>
           </AvatarFallback>
-       
-        </Avatar>
+          </Avatar>
+          <span className="h-[13px] w-[13px] bg-green-600 absolute rounded-full mt-6 ml-[71px] border"></span>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-50 shadow-xl" align="end">
-        <LogoutButton >
+        <DropdownMenuContent className="w-50 shadow-xl" align="end">
+          <LogoutButton >
           <DropdownMenuItem className=" cursor-pointer">
             <ExitIcon className="h-4 w-4 mr-2 " />
             Logout
