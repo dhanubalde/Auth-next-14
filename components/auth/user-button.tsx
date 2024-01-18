@@ -35,7 +35,6 @@ export const UserButton = () => {
               <FaUser className="text-white" />
           </AvatarFallback>
           </Avatar>
-          <span className="h-[13px] w-[13px] bg-green-600 absolute rounded-full mt-6 ml-[71px] border"></span>
       </DropdownMenuTrigger>
         <DropdownMenuContent className="w-50 shadow-xl" align="end">
           <LogoutButton >
