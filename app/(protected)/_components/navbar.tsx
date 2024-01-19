@@ -11,8 +11,8 @@ import path from "path";
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className=" bg-secondary flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm">
-      <div className=" flex gap-x-2">
+    <div className="mt-[10rem] bg-secondary flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm ">
+      <div className="hidden gap-x-2 md:inline-block">
       
       <Button
           asChild

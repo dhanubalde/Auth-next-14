@@ -16,9 +16,13 @@ import {
 } from "@/components/ui/avatar";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { LogoutButton } from "@/components/auth/logout-button";
+import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export const UserButton = () => {
   const user = useCurrentUser();
+  const pathname = usePathname()
 
   return (
     <>
@@ -37,12 +41,22 @@ export const UserButton = () => {
           </Avatar>
       </DropdownMenuTrigger>
         <DropdownMenuContent className="w-50 shadow-xl" align="end">
-          <LogoutButton >
-          <DropdownMenuItem className=" cursor-pointer">
-            <ExitIcon className="h-4 w-4 mr-2 " />
-            Logout
-          </DropdownMenuItem>
-        </LogoutButton>
+        <DropdownMenuItem className=" cursor-pointer">
+            <Button
+              asChild
+              variant={pathname === "/settings" ? "outline" : "outline"}
+            >
+              <Link href="/settings">
+                Settings
+              </Link>
+            </Button>
+          </DropdownMenuItem> 
+            <LogoutButton >
+              <DropdownMenuItem className=" cursor-pointer">
+                <ExitIcon className="h-4 w-4 mr-2 " />
+                Logout
+              </DropdownMenuItem>
+            </LogoutButton>
       </DropdownMenuContent>
       </DropdownMenu>
     </>  

@@ -62,7 +62,7 @@ const SettingsPage =  () => {
     
   }
   return (
-    <div>
+    <div className="">
 
       <Card className=" w-[600px]">
         <CardHeader>
