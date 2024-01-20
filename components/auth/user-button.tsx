@@ -27,12 +27,8 @@ export const UserButton = () => {
   return (
     <>
     <DropdownMenu>
-      <DropdownMenuTrigger className=" relative flex items-center gap-x-4 capitalize">
-          <p className=" relative font-medium">
-            @{user?.name}
-            
-        </p>
-        
+      <DropdownMenuTrigger>
+  
         <Avatar>
           <AvatarImage src={user?.image || ""} />
           <AvatarFallback className=" bg-slate-950">
@@ -40,16 +36,19 @@ export const UserButton = () => {
           </AvatarFallback>
           </Avatar>
       </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-50 shadow-xl" align="end">
+        <DropdownMenuContent className="w-[10rem] shadow-xl" align="end">
         <DropdownMenuItem className=" cursor-pointer">
-            <Button
+            {/* <Button
               asChild
               variant={pathname === "/settings" ? "outline" : "outline"}
+            > */}
+            <Link
+              className="hover:bg-transparent w-full rounded-lg"
+              href="/settings"
             >
-              <Link href="/settings">
                 Settings
               </Link>
-            </Button>
+            {/* </Button> */}
           </DropdownMenuItem> 
             <LogoutButton >
               <DropdownMenuItem className=" cursor-pointer">
