@@ -1,6 +1,6 @@
 "use client"
 import * as z from "zod"
-import { useSearchParams } from "next/navigation"
+import {  useSearchParams } from "next/navigation"
 import { useState, useTransition } from "react";
 import { useForm} from "react-hook-form"
 import { LoginSchema } from "@/schemas";
@@ -21,10 +21,13 @@ import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { login } from "@/actions/login";
 
+
+
 const LoginForm = () => {
+  
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use with defferent provider" : "";
+  const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? `Email Already in use with different 'Providers'` : "";
 
   const [showTwoFactor, setShowTwoFactor] = useState(false)
   const [error, setError] = useState<string | undefined>("");
@@ -46,6 +49,7 @@ const LoginForm = () => {
 
   
     startTransition(() => {
+
       login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
@@ -53,9 +57,9 @@ const LoginForm = () => {
             setError(data.error);
           }
           if (data?.success) {
-            form.reset()
             setSuccess(data.success);
           }
+          
         
         })
         .catch(() => setError("Something wnt wrong"))
@@ -64,7 +68,7 @@ const LoginForm = () => {
 
    }
   return (
-    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-tr from-sky-400 via-rose-400 to-blue-800">
+    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-r from-sky-400 via-emerald-400 to-blue-800">
     <CardWrapper
       headerLabel="Welcome Back"
       backButtonLabel="Don't have an account"

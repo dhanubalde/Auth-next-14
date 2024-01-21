@@ -1,7 +1,6 @@
 "use client"
 
 import * as z from "zod"
-import { auth, signOut } from "@/auth"
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useSession } from "next-auth/react";
@@ -25,13 +24,15 @@ import { settings } from "@/actions/settings";
 
 
 const SettingsPage =  () => {
-
+  
   const user = useCurrentUser()
   const [error, setError] = useState<string | undefined>()
   const [success, setSuccess] = useState<string | undefined>()
   const { update } = useSession()
   const [isPending, startTransition] = useTransition();
 
+
+  
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
@@ -62,7 +63,7 @@ const SettingsPage =  () => {
     
   }
   return (
-    <div className="">
+    <div className=" shadow-xl">
 
       <Card className=" w-[600px]">
         <CardHeader>

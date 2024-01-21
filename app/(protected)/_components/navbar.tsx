@@ -4,15 +4,15 @@ import { UserButton } from "@/components/auth/user-button";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation"
-import path from "path";
+
 
 
 
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="mt-[10rem] bg-secondary flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm ">
-      <div className="hidden gap-x-2 md:inline-block">
+    <div className=" mt-[10rem] bg-secondary flex justify-between items-center p-4 rounded-xl w-[600px] shadow-lg ">
+      <div className="gap-x-2 ">
       
       <Button
           asChild
@@ -48,7 +48,9 @@ const Navbar = () => {
         </Button>
 
       </div>
-      <UserButton />
+    
+           <UserButton />
+      
     </div>
   )
 }

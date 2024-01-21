@@ -32,18 +32,17 @@ export default auth((req) => {
 
   // if does login or use public route then redirect to search nextUrl to get /auth/login?callbackUrl
   if (!isLoggedIn && !isPublicRoute) {
-    
-    return Response.redirect(new URL("/auth/login", nextUrl))
-    // let callBackUrl = nextUrl.pathname;
-    // if (nextUrl.search) { 
-    //   callBackUrl = nextUrl.search
-    // }
+    let callBackUrl = nextUrl.pathname;
+    if (nextUrl.search) { 
+      callBackUrl = nextUrl.search
+    }
 
-    // const encodedCallbackUrl = encodeURIComponent(callBackUrl)
-    // return Response.redirect(new URL(
-    //   `/auth/login?callbackUrl=${encodedCallbackUrl}`,
-    //   nextUrl
-    // ))
+    const encodedCallbackUrl = encodeURIComponent(callBackUrl)
+
+    return Response.redirect(new URL(
+      `/auth/login?callbackUrl=${encodedCallbackUrl}`,
+      nextUrl
+    ))
   }
   return null
 
@@ -52,4 +51,4 @@ export default auth((req) => {
 // Optionally, don't invoke Middleware on some paths
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-}
+} 
