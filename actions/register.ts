@@ -4,6 +4,7 @@ import * as z from "zod"
 import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 import { getUserByEmail } from "@/data/user"
+import { generateVerificationToken } from "@/lib/token"
 
 
 export const register = async (
@@ -32,6 +33,10 @@ export const register = async (
       password: hashedPassword,
     },
   });
+
+  const verificationToken = await generateVerificationToken(email);
+
+
 
   return {success: "Confirmation email sent!"}
  }
