@@ -1,20 +1,31 @@
 "use client"
 
 import { admin } from "@/actions/admin"
+import RoleGate from "@/components/auth/role-gate"
+import { FormSuccess } from "@/components/form-success"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { toast } from "sonner"
+import { UserRole } from "@prisma/client"
+import { toast } from "@/components/ui/use-toast"
 
 const AdminPage = () => {
 
-  const onServerActionClick = () => { 
+  const onServerActionClick = (data: any) => { 
     admin()
       .then((data)=> { 
-        if (data.error) { 
-          toast.error(data.error)
+        if (data.error) {
+          toast({
+            title:"Something went wrong",
+            description: `${data.error}`
+          })
         }
 
         if (data.success) { 
-          toast.success(data.success)
+          toast({
+            title: "Success",
+            description: `${data.success}`
+
+          })
         }
       })
   }
@@ -23,9 +34,13 @@ const AdminPage = () => {
     fetch("/api/admin")
       .then((response) => { 
         if (response.ok) {
-          toast.success("Allowed API Route!");
+          toast({
+            description: "Allowed API Route!"
+          })
         } else { 
-          toast.error("Forbidden API Route!");
+          toast({
+            description: "Forbidden API Route!"
+          })
         }
       })
   }
@@ -39,8 +54,28 @@ const AdminPage = () => {
             Admin
           </p>
         </CardHeader>
-        <CardContent>
-          
+        <CardContent className=" space-y-4">
+          <RoleGate
+            allowedRole={UserRole.ADMIN}
+          >
+            <FormSuccess message="You are allowed to see this content"/>
+          </RoleGate>
+          <div className=" flex flex-row items-center justify-between rounded-lg border p-3 shadow-md">
+            <p className=" text-sm font-medium">
+              Admin-only API Route
+            </p>
+            <Button onClick={onApiRouteClick}>
+              Click to test
+            </Button>
+          </div>
+          <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-md">
+          <p className="text-sm font-medium">
+            Admin-only Server Action
+          </p>
+          <Button onClick={onServerActionClick}>
+            Click to test
+          </Button>
+        </div>
         </CardContent>
       </Card>
     </div>
