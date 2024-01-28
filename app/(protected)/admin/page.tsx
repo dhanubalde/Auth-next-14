@@ -15,14 +15,13 @@ const AdminPage = () => {
       .then((data)=> { 
         if (data.error) {
           toast({
-            title:"Something went wrong",
             description: `${data.error}`
           })
         }
 
         if (data.success) { 
           toast({
-            title: "Success",
+            title: "Successfully Forcontrol Admin",
             description: `${data.success}`
 
           })

@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from "react"
 import CardWrapper from "./card-wrapper";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
-import { BeatLoader } from "react-spinners";
 import { newVerification } from "@/actions/new-verification";
 
 
@@ -41,6 +40,7 @@ const NewVerificationForm = () => {
   }, [onSubmit]);
 
   return (
+    <div className=" flex items-center justify-center h-full w-full bg-gradient-to-r from-sky-400 via-emerald-400 to-blue-800">
     <CardWrapper
     headerLabel="Confirming your verification"
     backButtonLabel="Back to login"
@@ -48,14 +48,15 @@ const NewVerificationForm = () => {
   >
     <div className="flex items-center w-full justify-center">
       {!success && !error && (
-        <BeatLoader />
+        <p>Loading</p>
       )}
       <FormSuccess message={success} />
       {!success && (
         <FormError message={error} />
       )}
     </div>
-  </CardWrapper>
+      </CardWrapper>
+    </div>
   )
 }
 
