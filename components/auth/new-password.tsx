@@ -4,15 +4,9 @@ import React from 'react'
 
 const NewPasswordClient = () => {
   return (
-    <Card className="flex items-center justify-center">
-      <CardHearders>
-        <div> New Password</div>
-      </CardHearders>
-      <CardContent>
-      
-      </CardContent>
-      
-    </Card>
+   <div>
+    New Password
+   </div>
   )
 }
 
