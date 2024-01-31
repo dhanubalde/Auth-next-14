@@ -6,6 +6,7 @@ const NewPasswordClient = () => {
   return (
    <div>
     New Password
+      <p>Hello</p>
    </div>
   )
 }
