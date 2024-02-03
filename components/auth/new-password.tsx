@@ -8,6 +8,7 @@ const NewPasswordClient = () => {
     New Password
       <p>Hello</p>
      Create New Password
+     set
    </div>
   )
 }
