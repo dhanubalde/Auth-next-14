@@ -7,7 +7,7 @@ const NewPasswordClient = () => {
    <div className="items-center ">
     New Password
       <p>Hello</p>
-     manage user new password
+  
    </div>
   )
 }
